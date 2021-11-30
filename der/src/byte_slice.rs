@@ -17,60 +17,48 @@ pub(crate) struct ByteSlice<'a> {
 impl<'a> ByteSlice<'a> {
     /// Create a new [`ByteSlice`], ensuring that the provided `slice` value
     /// is shorter than `Length::max()`.
-    pub fn new(slice: &'a [u8]) -> Result<Self> {
-        Ok(Self {
-            inner: slice,
-            length: Length::try_from(slice.len())?,
-        })
+    pub fn new(_slice: &'a [u8]) -> Result<Self> {
+        unimplemented!()
     }
 
     /// Borrow the inner byte slice
     pub fn as_bytes(&self) -> &'a [u8] {
-        self.inner
+        unimplemented!()
     }
 
     /// Get the [`Length`] of this [`ByteSlice`]
     pub fn len(self) -> Length {
-        self.length
+        unimplemented!()
     }
 
     /// Is this [`ByteSlice`] empty?
     pub fn is_empty(self) -> bool {
-        self.len() == Length::ZERO
+        unimplemented!()
     }
 }
 
 impl AsRef<[u8]> for ByteSlice<'_> {
     fn as_ref(&self) -> &[u8] {
-        self.as_bytes()
+        unimplemented!()
     }
 }
 
 impl Default for ByteSlice<'_> {
     fn default() -> Self {
-        Self {
-            inner: &[],
-            length: Length::ZERO,
-        }
+        unimplemented!()
     }
 }
 
 impl<'a> TryFrom<&'a [u8]> for ByteSlice<'a> {
     type Error = Error;
 
-    fn try_from(slice: &'a [u8]) -> Result<Self> {
-        Self::new(slice)
+    fn try_from(_slice: &'a [u8]) -> Result<Self> {
+        unimplemented!()
     }
 }
 
 impl<'a> From<StrSlice<'a>> for ByteSlice<'a> {
     fn from(s: StrSlice<'a>) -> ByteSlice<'a> {
-        let bytes = s.as_bytes();
-        debug_assert_eq!(bytes.len(), usize::try_from(s.length).expect("overflow"));
-
-        ByteSlice {
-            inner: bytes,
-            length: s.length,
-        }
+        unimplemented!()
     }
 }

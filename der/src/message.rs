@@ -34,7 +34,7 @@ where
         })
     }
 
-    fn encode(&self, encoder: &mut Encoder<'_>) -> Result<()> {
+    fn encode(&self, encoder: &mut Encoder) -> Result<()> {
         self.fields(|fields| encoder.message(fields))
     }
 }

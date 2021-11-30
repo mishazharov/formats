@@ -1,7 +1,7 @@
 //! ASN.1 `OCTET STRING` support.
 
 use crate::{
-    asn1::Any, ByteSlice, Encodable, Encoder, Error, ErrorKind, Length, Result, Tag, Tagged,
+    asn1::Any, ByteSlice, Encodable, Encoder, Error, Length, Result, Tag, Tagged,
 };
 use core::convert::TryFrom;
 
@@ -14,68 +14,65 @@ pub struct OctetString<'a> {
 
 impl<'a> OctetString<'a> {
     /// Create a new ASN.1 `OCTET STRING` from a byte slice.
-    pub fn new(slice: &'a [u8]) -> Result<Self> {
-        ByteSlice::new(slice)
-            .map(|inner| Self { inner })
-            .map_err(|_| ErrorKind::Length { tag: Self::TAG }.into())
+    pub fn new(_slice: &'a [u8]) -> Result<Self> {
+        unimplemented!()
     }
 
     /// Borrow the inner byte slice.
     pub fn as_bytes(&self) -> &'a [u8] {
-        self.inner.as_bytes()
+        unimplemented!()
     }
 
     /// Get the length of the inner byte slice.
     pub fn len(&self) -> Length {
-        self.inner.len()
+        unimplemented!()
     }
 
     /// Is the inner byte slice empty?
     pub fn is_empty(&self) -> bool {
-        self.inner.is_empty()
+        unimplemented!()
     }
 }
 
 impl AsRef<[u8]> for OctetString<'_> {
     fn as_ref(&self) -> &[u8] {
-        self.as_bytes()
+        unimplemented!()
     }
 }
 
 impl<'a> From<&OctetString<'a>> for OctetString<'a> {
-    fn from(value: &OctetString<'a>) -> OctetString<'a> {
-        *value
+    fn from(_value: &OctetString<'a>) -> OctetString<'a> {
+        unimplemented!()
     }
 }
 
 impl<'a> TryFrom<Any<'a>> for OctetString<'a> {
     type Error = Error;
 
-    fn try_from(any: Any<'a>) -> Result<OctetString<'a>> {
-        any.tag().assert_eq(Tag::OctetString)?;
-        Self::new(any.as_bytes())
+    fn try_from(_any: Any<'a>) -> Result<OctetString<'a>> {
+        unimplemented!()
     }
 }
 
 impl<'a> From<OctetString<'a>> for Any<'a> {
-    fn from(octet_string: OctetString<'a>) -> Any<'a> {
-        Any::from_tag_and_value(Tag::OctetString, octet_string.inner)
+    fn from(_octet_string: OctetString<'a>) -> Any<'a> {
+        unimplemented!()
     }
 }
 
 impl<'a> From<OctetString<'a>> for &'a [u8] {
-    fn from(octet_string: OctetString<'a>) -> &'a [u8] {
-        octet_string.as_bytes()
+    fn from(_octet_string: OctetString<'a>) -> &'a [u8] {
+        unimplemented!()
     }
 }
 
 impl<'a> Encodable for OctetString<'a> {
     fn encoded_len(&self) -> Result<Length> {
-        Any::from(*self).encoded_len()
+        unimplemented!()
     }
 
-    fn encode(&self, encoder: &mut Encoder<'_>) -> Result<()> {
-        Any::from(*self).encode(encoder)
+    fn encode(&self, _encoder: &mut Encoder) -> Result<()> {
+        unimplemented!()
     }
 }
 

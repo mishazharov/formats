@@ -20,7 +20,7 @@ impl<'a, T> Choice<'a> for T
 where
     T: Decodable<'a> + Encodable + Tagged,
 {
-    fn can_decode(tag: Tag) -> bool {
-        T::TAG == tag
+    fn can_decode(_tag: Tag) -> bool {
+        unimplemented!()
     }
 }

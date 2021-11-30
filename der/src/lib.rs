@@ -343,12 +343,6 @@
 #![forbid(unsafe_code, clippy::unwrap_used)]
 #![warn(missing_docs, rust_2018_idioms, unused_qualifications)]
 
-#[cfg(feature = "alloc")]
-extern crate alloc;
-
-#[cfg(feature = "std")]
-extern crate std;
-
 pub mod asn1;
 pub mod message;
 
@@ -381,9 +375,5 @@ pub use crate::{
 #[cfg(feature = "bigint")]
 #[cfg_attr(docsrs, doc(cfg(feature = "bigint")))]
 pub use crypto_bigint as bigint;
-
-#[cfg(feature = "derive")]
-#[cfg_attr(docsrs, doc(cfg(feature = "derive")))]
-pub use der_derive::{Choice, Message};
 
 pub(crate) use crate::byte_slice::ByteSlice;

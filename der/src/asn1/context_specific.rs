@@ -1,7 +1,7 @@
 //! Context-specific field.
 
 use crate::{
-    asn1::Any, Choice, Decodable, Encodable, Encoder, Error, Header, Length, Result, Tag, TagNumber,
+    asn1::Any, Choice, Encodable, Encoder, Error, Length, Result, Tag, TagNumber,
 };
 use core::convert::TryFrom;
 
@@ -25,62 +25,31 @@ pub struct ContextSpecific<'a> {
 }
 
 impl<'a> Choice<'a> for ContextSpecific<'a> {
-    fn can_decode(tag: Tag) -> bool {
-        matches!(tag, Tag::ContextSpecific(_))
+    fn can_decode(_tag: Tag) -> bool {
+        unimplemented!()
     }
 }
 
 impl<'a> Encodable for ContextSpecific<'a> {
     fn encoded_len(&self) -> Result<Length> {
-        self.value.encoded_len()?.for_tlv()
+        unimplemented!()
     }
 
-    fn encode(&self, encoder: &mut Encoder<'_>) -> Result<()> {
-        let tag = Tag::ContextSpecific(self.tag_number);
-        Header::new(tag, self.value.encoded_len()?)?.encode(encoder)?;
-        self.value.encode(encoder)
+    fn encode(&self, _encoder: &mut Encoder) -> Result<()> {
+        unimplemented!()
     }
 }
 
 impl<'a> From<&ContextSpecific<'a>> for ContextSpecific<'a> {
-    fn from(value: &ContextSpecific<'a>) -> ContextSpecific<'a> {
-        *value
+    fn from(_value: &ContextSpecific<'a>) -> ContextSpecific<'a> {
+        unimplemented!()
     }
 }
 
 impl<'a> TryFrom<Any<'a>> for ContextSpecific<'a> {
     type Error = Error;
 
-    fn try_from(any: Any<'a>) -> Result<ContextSpecific<'a>> {
-        match any.tag() {
-            Tag::ContextSpecific(tag_number) => Ok(Self {
-                tag_number,
-                value: Any::from_der(any.as_bytes())?,
-            }),
-            tag => Err(tag.unexpected_error(None)),
-        }
-    }
-}
-
-#[cfg(test)]
-mod tests {
-    use super::ContextSpecific;
-    use crate::{Decodable, Encodable, Tag};
-    use hex_literal::hex;
-
-    // Public key data from `pkcs8` crate's `ed25519-pkcs8-v2.der`
-    const EXAMPLE_BYTES: &[u8] =
-        &hex!("A123032100A3A7EAE3A8373830BC47E1167BC50E1DB551999651E0E2DC587623438EAC3F31");
-
-    #[test]
-    fn round_trip() {
-        let field = ContextSpecific::from_der(EXAMPLE_BYTES).unwrap();
-        assert_eq!(field.tag_number.value(), 1);
-        assert_eq!(field.value.tag(), Tag::BitString);
-        assert_eq!(field.value.as_bytes(), &EXAMPLE_BYTES[5..]);
-
-        let mut buf = [0u8; 128];
-        let encoded = field.encode_to_slice(&mut buf).unwrap();
-        assert_eq!(encoded, EXAMPLE_BYTES);
+    fn try_from(_any: Any<'a>) -> Result<ContextSpecific<'a>> {
+        unimplemented!()
     }
 }

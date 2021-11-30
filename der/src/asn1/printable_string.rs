@@ -39,106 +39,79 @@ pub struct PrintableString<'a> {
 
 impl<'a> PrintableString<'a> {
     /// Create a new ASN.1 `PrintableString`.
-    pub fn new<T>(input: &'a T) -> Result<Self>
+    pub fn new<T>(_input: &'a T) -> Result<Self>
     where
         T: AsRef<[u8]> + ?Sized,
     {
-        let input = input.as_ref();
-
-        // Validate all characters are within PrintedString's allowed set
-        for &c in input.iter() {
-            match c {
-                b'A'..=b'Z'
-                | b'a'..=b'z'
-                | b'0'..=b'9'
-                | b' '
-                | b'\''
-                | b'('
-                | b')'
-                | b'+'
-                | b','
-                | b'-'
-                | b'.'
-                | b'/'
-                | b':'
-                | b'='
-                | b'?' => (),
-                _ => return Err(Self::TAG.value_error()),
-            }
-        }
-
-        StrSlice::from_bytes(input)
-            .map(|inner| Self { inner })
-            .map_err(|_| Self::TAG.value_error())
+        unimplemented!()
     }
 
     /// Borrow the string as a `str`.
     pub fn as_str(&self) -> &'a str {
-        self.inner.as_str()
+        unimplemented!()
     }
 
     /// Borrow the string as bytes.
     pub fn as_bytes(&self) -> &'a [u8] {
-        self.inner.as_bytes()
+        unimplemented!()
     }
 
     /// Get the length of the inner byte slice.
     pub fn len(&self) -> Length {
-        self.inner.len()
+        unimplemented!()
     }
 
     /// Is the inner string empty?
     pub fn is_empty(&self) -> bool {
-        self.inner.is_empty()
+        unimplemented!()
     }
 }
 
 impl AsRef<str> for PrintableString<'_> {
     fn as_ref(&self) -> &str {
-        self.as_str()
+        unimplemented!()
     }
 }
 
 impl AsRef<[u8]> for PrintableString<'_> {
     fn as_ref(&self) -> &[u8] {
-        self.as_bytes()
+        unimplemented!()
     }
 }
 
 impl<'a> From<&PrintableString<'a>> for PrintableString<'a> {
-    fn from(value: &PrintableString<'a>) -> PrintableString<'a> {
-        *value
+    fn from(_value: &PrintableString<'a>) -> PrintableString<'a> {
+        unimplemented!()
     }
 }
 
 impl<'a> TryFrom<Any<'a>> for PrintableString<'a> {
     type Error = Error;
 
-    fn try_from(any: Any<'a>) -> Result<PrintableString<'a>> {
-        any.tag().assert_eq(Tag::PrintableString)?;
-        Self::new(any.as_bytes())
+    fn try_from(_any: Any<'a>) -> Result<PrintableString<'a>> {
+        unimplemented!()
     }
 }
 
 impl<'a> From<PrintableString<'a>> for Any<'a> {
-    fn from(printable_string: PrintableString<'a>) -> Any<'a> {
-        Any::from_tag_and_value(Tag::PrintableString, printable_string.inner.into())
+    fn from(_printable_string: PrintableString<'a>) -> Any<'a> {
+        unimplemented!()
     }
 }
 
 impl<'a> From<PrintableString<'a>> for &'a [u8] {
-    fn from(printable_string: PrintableString<'a>) -> &'a [u8] {
-        printable_string.as_bytes()
+    fn from(_printable_string: PrintableString<'a>) -> &'a [u8] {
+        unimplemented!()
     }
 }
 
 impl<'a> Encodable for PrintableString<'a> {
     fn encoded_len(&self) -> Result<Length> {
-        Any::from(*self).encoded_len()
+        unimplemented!()
     }
 
-    fn encode(&self, encoder: &mut Encoder<'_>) -> Result<()> {
-        Any::from(*self).encode(encoder)
+    fn encode(&self, _encoder: &mut Encoder) -> Result<()> {
+        unimplemented!()
     }
 }
 
@@ -147,29 +120,13 @@ impl<'a> Tagged for PrintableString<'a> {
 }
 
 impl<'a> fmt::Display for PrintableString<'a> {
-    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        f.write_str(self.as_str())
+    fn fmt(&self, _f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        unimplemented!()
     }
 }
 
 impl<'a> fmt::Debug for PrintableString<'a> {
-    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        write!(f, "PrintableString({:?})", self.as_str())
-    }
-}
-
-#[cfg(test)]
-mod tests {
-    use super::PrintableString;
-    use crate::Decodable;
-
-    #[test]
-    fn parse_bytes() {
-        let example_bytes = &[
-            0x13, 0x0b, 0x54, 0x65, 0x73, 0x74, 0x20, 0x55, 0x73, 0x65, 0x72, 0x20, 0x31,
-        ];
-
-        let printable_string = PrintableString::from_der(example_bytes).unwrap();
-        assert_eq!(printable_string.as_str(), "Test User 1");
+    fn fmt(&self, _f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        unimplemented!()
     }
 }

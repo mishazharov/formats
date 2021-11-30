@@ -5,9 +5,6 @@ pub use core::str::Utf8Error;
 use crate::{Length, Tag};
 use core::{convert::Infallible, fmt};
 
-#[cfg(feature = "oid")]
-use crate::asn1::ObjectIdentifier;
-
 /// Result type.
 pub type Result<T> = core::result::Result<T, Error>;
 
@@ -23,54 +20,36 @@ pub struct Error {
 
 impl Error {
     /// Create a new [`Error`].
-    pub fn new(kind: ErrorKind, position: Length) -> Error {
-        Error {
-            kind,
-            position: Some(position),
-        }
+    pub fn new(_kind: ErrorKind, _position: Length) -> Error {
+        unimplemented!()
     }
 
     /// Get the [`ErrorKind`] which occurred.
     pub fn kind(self) -> ErrorKind {
-        self.kind
+        unimplemented!()
     }
 
     /// Get the position inside of the message where the error occurred.
     pub fn position(self) -> Option<Length> {
-        self.position
+        unimplemented!()
     }
 
     /// For errors occurring inside of a nested message, extend the position
     /// count by the location where the nested message occurs.
-    pub fn nested(self, nested_position: Length) -> Self {
-        // TODO(tarcieri): better handle length overflows occurring in this calculation?
-        let position = (nested_position + self.position.unwrap_or_default()).ok();
-
-        Self {
-            kind: self.kind,
-            position,
-        }
+    pub fn nested(self, _nested_position: Length) -> Self {
+        unimplemented!()
     }
 }
 
 impl fmt::Display for Error {
-    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        write!(f, "{}", self.kind)?;
-
-        if let Some(pos) = self.position {
-            write!(f, " at DER byte {}", pos)?;
-        }
-
-        Ok(())
+    fn fmt(&self, _f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        unimplemented!()
     }
 }
 
 impl From<ErrorKind> for Error {
-    fn from(kind: ErrorKind) -> Error {
-        Error {
-            kind,
-            position: None,
-        }
+    fn from(_kind: ErrorKind) -> Error {
+        unimplemented!()
     }
 }
 
@@ -81,23 +60,17 @@ impl From<Infallible> for Error {
 }
 
 impl From<Utf8Error> for Error {
-    fn from(err: Utf8Error) -> Error {
-        Error {
-            kind: ErrorKind::Utf8(err),
-            position: None,
-        }
+    fn from(_err: Utf8Error) -> Error {
+        unimplemented!()
     }
 }
 
 #[cfg(feature = "oid")]
 impl From<const_oid::Error> for Error {
     fn from(_: const_oid::Error) -> Error {
-        ErrorKind::MalformedOid.into()
+        unimplemented!()
     }
 }
-
-#[cfg(feature = "std")]
-impl std::error::Error for ErrorKind {}
 
 /// Error type.
 #[derive(Copy, Clone, Debug, Eq, PartialEq)]
@@ -172,21 +145,6 @@ pub enum ErrorKind {
         actual: Tag,
     },
 
-    /// Unknown OID.
-    ///
-    /// This error is intended to be used by libraries which parse DER-based
-    /// formats which encounter unknown or unsupported OID libraries.
-    ///
-    /// It enables passing back the OID value to the caller, which allows them
-    /// to determine which OID(s) are causing the error (and then potentially
-    /// contribute upstream support for algorithms they care about).
-    #[cfg(feature = "oid")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "oid")))]
-    UnknownOid {
-        /// OID value that was unrecognized by a parser for a DER-based format.
-        oid: ObjectIdentifier,
-    },
-
     /// Unknown/unsupported tag.
     UnknownTag {
         /// Raw byte value of the tag.
@@ -212,48 +170,7 @@ impl ErrorKind {
 }
 
 impl fmt::Display for ErrorKind {
-    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        match self {
-            ErrorKind::DuplicateField { tag } => write!(f, "duplicate field for {}", tag),
-            ErrorKind::Failed => write!(f, "operation failed"),
-            ErrorKind::Length { tag } => write!(f, "incorrect length for {}", tag),
-            ErrorKind::Noncanonical { tag } => {
-                write!(f, "ASN.1 {} not canonically encoded as DER", tag)
-            }
-            ErrorKind::MalformedOid => write!(f, "malformed OID"),
-            ErrorKind::Overflow => write!(f, "integer overflow"),
-            ErrorKind::Overlength => write!(f, "DER message is too long"),
-            ErrorKind::TrailingData { decoded, remaining } => {
-                write!(
-                    f,
-                    "trailing data at end of DER message: decoded {} bytes, {} bytes remaining",
-                    decoded, remaining
-                )
-            }
-            ErrorKind::Truncated => write!(f, "DER message is truncated"),
-            ErrorKind::Underlength { expected, actual } => write!(
-                f,
-                "DER message too short: expected {}, got {}",
-                expected, actual
-            ),
-            ErrorKind::UnexpectedTag { expected, actual } => {
-                write!(f, "unexpected ASN.1 DER tag: ")?;
-
-                if let Some(tag) = expected {
-                    write!(f, "expected {}, ", tag)?;
-                }
-
-                write!(f, "got {}", actual)
-            }
-            #[cfg(feature = "oid")]
-            ErrorKind::UnknownOid { oid } => {
-                write!(f, "unknown/unsupported OID: {}", oid)
-            }
-            ErrorKind::UnknownTag { byte } => {
-                write!(f, "unknown/unsupported ASN.1 DER tag: 0x{:02x}", byte)
-            }
-            ErrorKind::Utf8(e) => write!(f, "{}", e),
-            ErrorKind::Value { tag } => write!(f, "malformed ASN.1 DER value for {}", tag),
-        }
+    fn fmt(&self, _f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        unimplemented!()
     }
 }

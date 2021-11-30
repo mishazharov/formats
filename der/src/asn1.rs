@@ -9,8 +9,6 @@ mod ia5_string;
 mod integer;
 mod null;
 mod octet_string;
-#[cfg(feature = "oid")]
-mod oid;
 mod optional;
 mod printable_string;
 mod sequence;
@@ -33,7 +31,3 @@ pub use self::{
     utc_time::UtcTime,
     utf8_string::Utf8String,
 };
-
-#[cfg(feature = "oid")]
-#[cfg_attr(docsrs, doc(cfg(feature = "oid")))]
-pub use const_oid::ObjectIdentifier;

@@ -4,7 +4,7 @@ pub(super) mod iter;
 
 use self::iter::SequenceIter;
 use crate::{
-    asn1::Any, ByteSlice, Decodable, Decoder, Encodable, Encoder, Error, ErrorKind, Length, Result,
+    asn1::Any, ByteSlice, Decodable, Decoder, Encodable, Encoder, Error, Length, Result,
     Tag, Tagged,
 };
 use core::convert::TryFrom;
@@ -17,64 +17,54 @@ pub struct Sequence<'a> {
 }
 
 impl<'a> Sequence<'a> {
-    /// Create a new [`Sequence`] from a slice.
-    pub(crate) fn new(slice: &'a [u8]) -> Result<Self> {
-        ByteSlice::new(slice)
-            .map(|inner| Self { inner })
-            .map_err(|_| ErrorKind::Length { tag: Self::TAG }.into())
-    }
-
     /// Borrow the inner byte sequence.
     pub fn as_bytes(&self) -> &'a [u8] {
-        self.inner.as_bytes()
+        unimplemented!()
     }
 
     /// Decode values nested within a sequence, creating a new [`Decoder`] for
     /// the data contained in the sequence's body and passing it to the provided
     /// [`FnOnce`].
-    pub fn decode_nested<F, T>(&self, f: F) -> Result<T>
+    pub fn decode_nested<F, T>(&self, _f: F) -> Result<T>
     where
         F: FnOnce(&mut Decoder<'a>) -> Result<T>,
     {
-        let mut seq_decoder = Decoder::new(self.as_bytes());
-        let result = f(&mut seq_decoder)?;
-        seq_decoder.finish(result)
+        unimplemented!()
     }
 
     /// Iterate over the values in a heterogenously typed sequence.
     pub fn iter<T: Decodable<'a>>(&self) -> SequenceIter<'a, T> {
-        SequenceIter::new(Decoder::new(self.as_bytes()))
+        unimplemented!()
     }
 }
 
 impl AsRef<[u8]> for Sequence<'_> {
     fn as_ref(&self) -> &[u8] {
-        self.as_bytes()
+        unimplemented!()
     }
 }
 
 impl<'a> TryFrom<Any<'a>> for Sequence<'a> {
     type Error = Error;
 
-    fn try_from(any: Any<'a>) -> Result<Self> {
-        any.tag().assert_eq(Tag::Sequence)?;
-        Self::new(any.as_bytes())
+    fn try_from(_any: Any<'a>) -> Result<Self> {
+        unimplemented!()
     }
 }
 
 impl<'a> From<Sequence<'a>> for Any<'a> {
-    fn from(seq: Sequence<'a>) -> Any<'a> {
-        Any::from_tag_and_value(Tag::Sequence, seq.inner)
+    fn from(_seq: Sequence<'a>) -> Any<'a> {
+        unimplemented!()
     }
 }
 
 impl<'a> Encodable for Sequence<'a> {
     fn encoded_len(&self) -> Result<Length> {
-        Any::from(*self).encoded_len()
+        unimplemented!()
     }
 
-    fn encode(&self, encoder: &mut Encoder<'_>) -> Result<()> {
-        Any::from(*self).encode(encoder)
+    fn encode(&self, _encoder: &mut Encoder) -> Result<()> {
+        unimplemented!()
     }
 }
 

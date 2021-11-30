@@ -38,12 +38,7 @@ impl Class {
 }
 
 impl fmt::Display for Class {
-    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        f.write_str(match self {
-            Class::Universal => "UNIVERSAL",
-            Class::Application => "APPLICATION",
-            Class::ContextSpecific => "CONTEXT-SPECIFIC",
-            Class::Private => "PRIVATE",
-        })
+    fn fmt(&self, _f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        unimplemented!()
     }
 }

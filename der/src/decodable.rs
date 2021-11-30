@@ -18,10 +18,8 @@ pub trait Decodable<'a>: Sized {
     fn decode(decoder: &mut Decoder<'a>) -> Result<Self>;
 
     /// Parse `Self` from the provided DER-encoded byte slice.
-    fn from_der(bytes: &'a [u8]) -> Result<Self> {
-        let mut decoder = Decoder::new(bytes);
-        let result = Self::decode(&mut decoder)?;
-        decoder.finish(result)
+    fn from_der(_bytes: &'a [u8]) -> Result<Self> {
+        unimplemented!()
     }
 }
 
@@ -29,9 +27,7 @@ impl<'a, T> Decodable<'a> for T
 where
     T: TryFrom<Any<'a>, Error = Error>,
 {
-    fn decode(decoder: &mut Decoder<'a>) -> Result<T> {
-        Any::decode(decoder)
-            .and_then(Self::try_from)
-            .map_err(|e| decoder.error(e.kind()))
+    fn decode(_decoder: &mut Decoder<'a>) -> Result<T> {
+        unimplemented!()
     }
 }
