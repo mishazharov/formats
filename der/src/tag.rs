@@ -8,9 +8,6 @@ pub use self::{class::Class, number::TagNumber};
 use crate::{Decodable, Decoder, Encodable, Encoder, Error, Length, Result};
 use core::{convert::TryFrom, fmt};
 
-/// Indicator bit for constructed form encoding (i.e. vs primitive form)
-const CONSTRUCTED_FLAG: u8 = 0b100000;
-
 /// Types with an associated ASN.1 [`Tag`].
 pub trait Tagged {
     /// ASN.1 tag
@@ -70,9 +67,6 @@ pub enum Tag {
 
     /// `UTCTime` tag: 0x17
     UtcTime,
-
-    /// `GeneralizedTime` tag: 0x18
-    GeneralizedTime,
 
     /// Application tag.
     Application(TagNumber),
@@ -158,13 +152,13 @@ impl Encodable for Tag {
 }
 
 impl fmt::Display for Tag {
-    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+    fn fmt(&self, _f: &mut fmt::Formatter<'_>) -> fmt::Result {
         unimplemented!()
     }
 }
 
 impl fmt::Debug for Tag {
-    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+    fn fmt(&self, _f: &mut fmt::Formatter<'_>) -> fmt::Result {
         unimplemented!()
     }
 }

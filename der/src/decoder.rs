@@ -1,9 +1,6 @@
 //! DER decoder.
 
 use crate::{asn1::*, Choice, Decodable, Error, ErrorKind, Length, Result, Tag, TagNumber};
-use core::{
-    convert::{TryInto},
-};
 
 /// DER decoder.
 #[derive(Debug)]
@@ -89,18 +86,6 @@ impl<'a> Decoder<'a> {
         unimplemented!()
     }
 
-    /// Attempt to decode an ASN.1 `INTEGER` as a [`UIntBytes`].
-    #[cfg(feature = "bigint")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "bigint")))]
-    pub fn uint_bytes(&mut self) -> Result<UIntBytes<'a>> {
-        unimplemented!()
-    }
-
-    /// Attempt to decode an ASN.1 `BIT STRING`.
-    pub fn bit_string(&mut self) -> Result<BitString<'a>> {
-        unimplemented!()
-    }
-
     /// Attempt to decode an ASN.1 `CONTEXT-SPECIFIC` field with the
     /// provided [`TagNumber`].
     ///
@@ -120,43 +105,13 @@ impl<'a> Decoder<'a> {
         unimplemented!()
     }
 
-    /// Attempt to decode an ASN.1 `GeneralizedTime`.
-    pub fn generalized_time(&mut self) -> Result<GeneralizedTime> {
-        unimplemented!()
-    }
-
-    /// Attempt to decode an ASN.1 `IA5String`.
-    pub fn ia5_string(&mut self) -> Result<Ia5String<'a>> {
-        unimplemented!()
-    }
-
     /// Attempt to decode an ASN.1 `NULL` value.
     pub fn null(&mut self) -> Result<Null> {
         unimplemented!()
     }
 
-    /// Attempt to decode an ASN.1 `OCTET STRING`.
-    pub fn octet_string(&mut self) -> Result<OctetString<'a>> {
-        unimplemented!()
-    }
-
     /// Attempt to decode an ASN.1 `OPTIONAL` value.
     pub fn optional<T: Choice<'a>>(&mut self) -> Result<Option<T>> {
-        unimplemented!()
-    }
-
-    /// Attempt to decode an ASN.1 `PrintableString`.
-    pub fn printable_string(&mut self) -> Result<PrintableString<'a>> {
-        unimplemented!()
-    }
-
-    /// Attempt to decode an ASN.1 `UTCTime`.
-    pub fn utc_time(&mut self) -> Result<UtcTime> {
-        unimplemented!()
-    }
-
-    /// Attempt to decode an ASN.1 `UTF8String`.
-    pub fn utf8_string(&mut self) -> Result<Utf8String<'a>> {
         unimplemented!()
     }
 
@@ -166,33 +121,6 @@ impl<'a> Decoder<'a> {
     where
         F: FnOnce(&mut Decoder<'a>) -> Result<T>,
     {
-        unimplemented!()
-    }
-
-    /// Decode a single byte, updating the internal cursor.
-    pub(crate) fn byte(&mut self) -> Result<u8> {
-        unimplemented!()
-    }
-
-    /// Obtain a slice of bytes of the given length from the current cursor
-    /// position, or return an error if we have insufficient data.
-    pub(crate) fn bytes(&mut self, _len: impl TryInto<Length>) -> Result<&'a [u8]> {
-        unimplemented!()
-    }
-
-    /// Peek at the next byte in the decoder without modifying the cursor.
-    pub(crate) fn peek(&self) -> Option<u8> {
-        unimplemented!()
-    }
-
-    /// Obtain the remaining bytes in this decoder from the current cursor
-    /// position.
-    fn remaining(&self) -> Result<&'a [u8]> {
-        unimplemented!()
-    }
-
-    /// Get the number of bytes still remaining in the buffer.
-    fn remaining_len(&self) -> Result<Length> {
         unimplemented!()
     }
 }

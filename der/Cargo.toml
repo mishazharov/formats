@@ -20,9 +20,6 @@ wasm-bindgen = { version = "0.2.73", features = ["serde-serialize"], default-fea
 rand_core = { version = "0.6.3", features = ["std"], default-features = false }
 getrandom = { version = "0.2", features = ["js"], default-features = false }
 
-[dev-dependencies]
-hex-literal = "0.3"
-
 [features]
 alloc = []
 bigint = ["crypto-bigint"]

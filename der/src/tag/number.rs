@@ -30,7 +30,7 @@ impl TagNumber {
     /// Panics if the tag number is greater than [`TagNumber::MAX`]. For a fallible
     /// conversion, use [`TryFrom`] instead.
     #[allow(clippy::no_effect)]
-    pub const fn new(_byte: u8) -> Self {
+    pub fn new(_byte: u8) -> Self {
         unimplemented!()
     }
 

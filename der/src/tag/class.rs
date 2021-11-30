@@ -1,6 +1,5 @@
 //! Class of an ASN.1 tag.
 
-use super::{TagNumber, CONSTRUCTED_FLAG};
 use core::fmt;
 
 /// Class of an ASN.1 tag.
@@ -28,13 +27,6 @@ pub enum Class {
 
     /// `PRIVATE`: types whose meaning is specific to a given enterprise.
     Private = 0b11000000,
-}
-
-impl Class {
-    /// Compute the identifier octet for a tag number of this class.
-    pub(super) fn octet(self, number: TagNumber, constructed: bool) -> u8 {
-        self as u8 | number.value() | (constructed as u8 * CONSTRUCTED_FLAG)
-    }
 }
 
 impl fmt::Display for Class {

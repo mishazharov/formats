@@ -29,29 +29,13 @@ impl Length {
     /// Create a new [`Length`] for any value which fits inside of a [`u16`].
     ///
     /// This function is const-safe and therefore useful for [`Length`] constants.
-    pub const fn new(_value: u16) -> Self {
+    pub fn new(_value: u16) -> Self {
         unimplemented!()
     }
 
     /// Get the length of DER Tag-Length-Value (TLV) encoded data if `self`
     /// is the length of the inner "value" portion of the message.
     pub fn for_tlv(self) -> Result<Self> {
-        unimplemented!()
-    }
-
-    /// Get initial octet of the encoded length (if one is required).
-    ///
-    /// From X.690 Section 8.1.3.5:
-    /// > In the long form, the length octets shall consist of an initial octet
-    /// > and one or more subsequent octets. The initial octet shall be encoded
-    /// > as follows:
-    /// >
-    /// > a) bit 8 shall be one;
-    /// > b) bits 7 to 1 shall encode the number of subsequent octets in the
-    /// >    length octets, as an unsigned binary integer with bit 7 as the
-    /// >    most significant bit;
-    /// > c) the value 11111111₂ shall not be used.
-    fn initial_octet(self) -> Option<u8> {
         unimplemented!()
     }
 }
