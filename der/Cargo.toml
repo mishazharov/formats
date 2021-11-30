@@ -18,6 +18,9 @@ readme = "README.md"
 const-oid = { version = "0.6", optional = true, path = "../const-oid" }
 crypto-bigint = { version = "0.2", optional = true, features = ["generic-array"] }
 der_derive = { version = "0.4", optional = true, path = "derive" }
+wasm-bindgen = { version = "0.2.73", features = ["serde-serialize"], default-features = false }
+rand_core = { version = "0.6.3", features = ["std"], default-features = false }
+getrandom = { version = "0.2", features = ["js"], default-features = false }
 
 [dev-dependencies]
 hex-literal = "0.3"
@@ -28,6 +31,7 @@ derive = ["der_derive"]
 bigint = ["crypto-bigint"]
 oid = ["const-oid"]
 std = ["alloc"]
+default = ["bigint"]
 
 [package.metadata.docs.rs]
 all-features = true
