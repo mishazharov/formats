@@ -1,7 +1,7 @@
 //! ASN.1 `ANY` type.
 
 use crate::{
-    Choice, Decodable, Decoder, Encodable, Encoder, Error,
+    Decodable, Decoder, Error,
     Length, Result, Tag,
 };
 use core::convert::{TryFrom};
@@ -64,14 +64,6 @@ impl<'a> Any<'a> {
         unimplemented!()
     }
 
-    /// Attempt to decode an ASN.1 `OPTIONAL` value.
-    pub fn optional<T>(self) -> Result<Option<T>>
-    where
-        T: Choice<'a> + TryFrom<Self, Error = Error>,
-    {
-        unimplemented!()
-    }
-
     /// Attempt to decode this value an ASN.1 `SEQUENCE`, creating a new
     /// nested [`Decoder`] and calling the provided argument with it.
     pub fn sequence<F, T>(self, _f: F) -> Result<T>
@@ -82,24 +74,8 @@ impl<'a> Any<'a> {
     }
 }
 
-impl<'a> Choice<'a> for Any<'a> {
-    fn can_decode(_: Tag) -> bool {
-        true
-    }
-}
-
 impl<'a> Decodable<'a> for Any<'a> {
     fn decode(_decoder: &mut Decoder<'a>) -> Result<Any<'a>> {
-        unimplemented!()
-    }
-}
-
-impl<'a> Encodable for Any<'a> {
-    fn encoded_len(&self) -> Result<Length> {
-        unimplemented!()
-    }
-
-    fn encode(&self, _encoder: &mut Encoder) -> Result<()> {
         unimplemented!()
     }
 }

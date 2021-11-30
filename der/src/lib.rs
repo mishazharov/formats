@@ -9,12 +9,9 @@
 #![warn(rust_2018_idioms, unused_qualifications)]
 
 pub mod asn1;
-pub mod message;
 
-mod choice;
 mod decodable;
 mod decoder;
-mod encodable;
 mod encoder;
 mod error;
 mod header;
@@ -22,15 +19,12 @@ mod length;
 mod tag;
 
 pub use crate::{
-    choice::Choice,
     decodable::Decodable,
     decoder::Decoder,
-    encodable::Encodable,
     encoder::Encoder,
     error::{Error, ErrorKind, Result},
     header::Header,
     length::Length,
-    message::Message,
     tag::{Class, Tag, TagNumber, Tagged},
 };
 

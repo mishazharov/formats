@@ -1,18 +1,12 @@
 //! DER encoder.
 
-use crate::{Encodable, Length, Result};
+use crate::{Length, Result};
 use core::convert::{TryInto};
 
 pub struct Encoder {
 }
 
 impl Encoder {
-
-    /// Encode a message with the provided [`Encodable`] fields as an
-    /// ASN.1 `SEQUENCE`.
-    pub fn message(&mut self, _fields: &[&dyn Encodable]) -> Result<()> {
-        unimplemented!()
-    }
 
     /// Encode an ASN.1 `SEQUENCE` of the given length.
     ///

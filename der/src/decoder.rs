@@ -1,6 +1,6 @@
 //! DER decoder.
 
-use crate::{asn1::*, Choice, Decodable, Error, ErrorKind, Length, Result, Tag, TagNumber};
+use crate::{asn1::*, Decodable, Error, ErrorKind, Length, Result, Tag, TagNumber};
 
 /// DER decoder.
 #[derive(Debug)]
@@ -107,11 +107,6 @@ impl<'a> Decoder<'a> {
 
     /// Attempt to decode an ASN.1 `NULL` value.
     pub fn null(&mut self) -> Result<Null> {
-        unimplemented!()
-    }
-
-    /// Attempt to decode an ASN.1 `OPTIONAL` value.
-    pub fn optional<T: Choice<'a>>(&mut self) -> Result<Option<T>> {
         unimplemented!()
     }
 

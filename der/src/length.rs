@@ -1,6 +1,6 @@
 //! Length calculations for encoded ASN.1 DER values
 
-use crate::{Decodable, Decoder, Encodable, Encoder, Error, Result};
+use crate::{Decodable, Decoder, Error, Result};
 use core::{
     convert::{TryFrom},
     fmt,
@@ -126,16 +126,6 @@ impl TryFrom<Length> for usize {
 
 impl Decodable<'_> for Length {
     fn decode(_decoder: &mut Decoder<'_>) -> Result<Length> {
-        unimplemented!()
-    }
-}
-
-impl Encodable for Length {
-    fn encoded_len(&self) -> Result<Length> {
-        unimplemented!()
-    }
-
-    fn encode(&self, _encoder: &mut Encoder) -> Result<()> {
         unimplemented!()
     }
 }

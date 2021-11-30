@@ -31,7 +31,6 @@ version = "0.4.4"
 dependencies = [
  "crypto-bigint",
  "getrandom",
- "hex-literal",
  "rand_core",
  "wasm-bindgen",
 ]
@@ -58,12 +57,6 @@ dependencies = [
  "wasi",
  "wasm-bindgen",
 ]
-
-[[package]]
-name = "hex-literal"
-version = "0.3.3"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "21e4590e13640f19f249fe3e4eca5113bc4289f2497710378190e7f4bd96f45b"
 
 [[package]]
 name = "itoa"

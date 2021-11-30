@@ -1,6 +1,6 @@
 //! ASN.1 DER headers.
 
-use crate::{Decodable, Decoder, Encodable, Encoder, Length, Result, Tag};
+use crate::{Decodable, Decoder, Length, Result, Tag};
 use core::convert::TryInto;
 
 /// ASN.1 DER headers: tag + length component of TLV-encoded values
@@ -24,16 +24,6 @@ impl Header {
 
 impl Decodable<'_> for Header {
     fn decode(_decoder: &mut Decoder<'_>) -> Result<Header> {
-        unimplemented!()
-    }
-}
-
-impl Encodable for Header {
-    fn encoded_len(&self) -> Result<Length> {
-        unimplemented!()
-    }
-
-    fn encode(&self, _encoder: &mut Encoder) -> Result<()> {
         unimplemented!()
     }
 }

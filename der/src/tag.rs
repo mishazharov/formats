@@ -5,7 +5,7 @@ mod number;
 
 pub use self::{class::Class, number::TagNumber};
 
-use crate::{Decodable, Decoder, Encodable, Encoder, Error, Length, Result};
+use crate::{Decodable, Decoder, Error, Result};
 use core::{convert::TryFrom, fmt};
 
 /// Types with an associated ASN.1 [`Tag`].
@@ -137,16 +137,6 @@ impl From<&Tag> for u8 {
 
 impl Decodable<'_> for Tag {
     fn decode(_decoder: &mut Decoder<'_>) -> Result<Self> {
-        unimplemented!()
-    }
-}
-
-impl Encodable for Tag {
-    fn encoded_len(&self) -> Result<Length> {
-        unimplemented!()
-    }
-
-    fn encode(&self, _encoder: &mut Encoder) -> Result<()> {
         unimplemented!()
     }
 }
