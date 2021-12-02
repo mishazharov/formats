@@ -69,5 +69,16 @@ impl Encoder {
     }
 }
 
-// repro: also important
-use rand_core::{CryptoRng, RngCore};
+pub struct RandCryptoError {
+}
+
+impl RandCryptoError {
+}
+
+// repro: important
+impl From<getrandom::Error> for RandCryptoError {
+    #[inline]
+    fn from(_error: getrandom::Error) -> Self {
+        unimplemented!()
+    }
+}
