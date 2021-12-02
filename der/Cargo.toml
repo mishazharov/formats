@@ -15,17 +15,6 @@ keywords = ["asn1", "crypto", "itu", "pkcs"]
 readme = "README.md"
 
 [dependencies]
-crypto-bigint = { version = "0.2", optional = true, features = ["generic-array"] }
 wasm-bindgen = { version = "0.2.73", features = ["serde-serialize"], default-features = false }
 rand_core = { version = "0.6.3", features = ["std"], default-features = false }
 getrandom = { version = "0.2", features = ["js"], default-features = false }
-
-[features]
-alloc = []
-bigint = ["crypto-bigint"]
-std = ["alloc"]
-default = ["bigint"]
-
-[package.metadata.docs.rs]
-all-features = true
-rustdoc-args = ["--cfg", "docsrs"]
