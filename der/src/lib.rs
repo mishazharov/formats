@@ -8,6 +8,8 @@
 #![forbid(unsafe_code, clippy::unwrap_used)]
 #![warn(rust_2018_idioms, unused_qualifications)]
 
+// From der repo:
+
 use core::marker::PhantomData;
 use core::convert::TryInto;
 use core::convert::TryFrom;
@@ -69,4 +71,5 @@ impl Encoder {
     }
 }
 
+// From rust-random/getrandom which is from rand_core:
 use wasm_bindgen::{prelude::*};
