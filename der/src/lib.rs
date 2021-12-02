@@ -69,16 +69,4 @@ impl Encoder {
     }
 }
 
-pub struct RandCryptoError {
-}
-
-impl RandCryptoError {
-}
-
-// repro: important
-impl From<getrandom::Error> for RandCryptoError {
-    #[inline]
-    fn from(_error: getrandom::Error) -> Self {
-        unimplemented!()
-    }
-}
+use wasm_bindgen::{prelude::*};

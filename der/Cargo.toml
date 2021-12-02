@@ -16,4 +16,3 @@ readme = "README.md"
 
 [dependencies]
 wasm-bindgen = { version = "0.2.73", features = ["serde-serialize"], default-features = false }
-getrandom = { version = "0.2", features = ["js"], default-features = false }
