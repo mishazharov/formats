@@ -23,7 +23,6 @@ pub use crate::{
     decoder::Decoder,
     encoder::Encoder,
     error::{Error, ErrorKind, Result},
-    header::Header,
     length::Length,
     tag::{Class, Tag, TagNumber, Tagged},
 };

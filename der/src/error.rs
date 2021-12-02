@@ -9,13 +9,7 @@ use core::{convert::Infallible, fmt};
 pub type Result<T> = core::result::Result<T, Error>;
 
 /// Error type.
-#[derive(Copy, Clone, Debug, Eq, PartialEq)]
 pub struct Error {
-    /// Kind of error.
-    kind: ErrorKind,
-
-    /// Position inside of message where error occurred.
-    position: Option<Length>,
 }
 
 impl Error {
@@ -73,7 +67,6 @@ impl From<const_oid::Error> for Error {
 }
 
 /// Error type.
-#[derive(Copy, Clone, Debug, Eq, PartialEq)]
 #[non_exhaustive]
 pub enum ErrorKind {
     /// Indicates a field which is duplicated when only one is expected.
